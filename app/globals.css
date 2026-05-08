@@ -12,6 +12,7 @@
   --color-muted-purple: #666469;
   --color-dark-charcoal: #454545;
   --color-frosted-veil: rgba(255, 255, 255, 0.04);
+  --color-frosted-tag: rgba(255, 255, 255, 0.16);
   --color-mist-border: rgba(226, 226, 226, 0.35);
 }
 
@@ -24,11 +25,206 @@
   --color-ash-gray: var(--color-ash-gray);
   --color-muted-purple: var(--color-muted-purple);
   --color-dark-charcoal: var(--color-dark-charcoal);
+  --color-frosted-veil: var(--color-frosted-veil);
+  --color-frosted-tag: var(--color-frosted-tag);
+  --color-mist-border: var(--color-mist-border);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --breakpoint-tablet: 810px;
+  --breakpoint-desktop: 1500px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-frosted-tag);
+  color: var(--color-parchment);
+}
+
+/* Type-scale role classes (responsive baked in).
+   Mobile-first: <810px → tablet ≥810px → desktop ≥1500px */
+.text-display {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -1.2px;
+  font-weight: 400;
+}
+@media (min-width: 810px) {
+  .text-display { font-size: 56px; letter-spacing: -1.68px; }
+}
+@media (min-width: 1500px) {
+  .text-display { font-size: 80px; letter-spacing: -2.4px; }
+}
+
+.text-section {
+  font-size: 40px;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  font-weight: 400;
+}
+@media (min-width: 810px) {
+  .text-section { font-size: 48px; letter-spacing: -0.48px; }
+}
+@media (min-width: 1500px) {
+  .text-section { font-size: 56px; letter-spacing: -0.56px; line-height: 1.2; }
+}
+
+.text-feature {
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.32px;
+  font-weight: 400;
+}
+@media (min-width: 1500px) {
+  .text-feature { font-size: 40px; letter-spacing: -0.4px; line-height: 1.1; }
+}
+
+.text-subhead {
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.56px;
+  font-weight: 400;
+}
+@media (min-width: 810px) {
+  .text-subhead { font-size: 32px; letter-spacing: -0.64px; }
+}
+@media (min-width: 1500px) {
+  .text-subhead { font-size: 36px; letter-spacing: -0.72px; line-height: 1.15; }
+}
+
+.text-body-heading {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.22px;
+  font-weight: 400;
+}
+@media (min-width: 1500px) {
+  .text-body-heading { font-size: 24px; letter-spacing: -0.24px; }
+}
+
+.text-card-title {
+  font-size: 22px;
+  line-height: 1.14;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.text-body-lg {
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.18px;
+  font-weight: 400;
+}
+@media (min-width: 1500px) {
+  .text-body-lg { font-size: 20px; letter-spacing: -0.2px; }
+}
+
+.text-body {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  font-weight: 400;
+}
+@media (min-width: 810px) {
+  .text-body { font-size: 18px; letter-spacing: -0.18px; line-height: 1.3; }
+}
+
+.text-ui {
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.text-caption {
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 1.4px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.text-label {
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 2.4px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* Page-shell helpers */
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1500px;
+  padding-inline: 24px;
+}
+@media (min-width: 810px) {
+  .shell { padding-inline: 48px; }
+}
+@media (min-width: 1500px) {
+  .shell { padding-inline: 80px; }
+}
+
+.section-y {
+  padding-block: 80px;
+}
+@media (min-width: 810px) {
+  .section-y { padding-block: 96px; }
+}
+@media (min-width: 1500px) {
+  .section-y { padding-block: 120px; }
+}
+
+/* Edge-fade mask for marquee */
+.edge-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+/* Faint dotted-grid background used inside workflow placeholders */
+.dotted-grid {
+  background-image: radial-gradient(
+    rgba(226, 226, 226, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+
+/* Reduced-motion: kill all animations + smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
